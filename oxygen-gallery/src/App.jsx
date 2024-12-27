@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Outlet } from 'react-router-dom';
 import './App.css'
 
 function App() {
   const [photoData, setPhotoData] = useState([]); 
   const fetchFromApi = () => {
     const clientID = '0oWmA29p5xRBLsK8-NiXk2FEdmS9_3Viksud3NBiHHw';
-    const apiUrl = `https://api.unsplash.com/photos/random?count=10&client_id=${clientID}`;
+    const apiUrl = `https://api.unsplash.com/photos/random?count=20&client_id=${clientID}`;
 
     useEffect(() => {
       fetch(apiUrl)
@@ -28,9 +27,7 @@ function App() {
           <img src={photoData.urls.thumb}></img>
         </li> */}
         {photoData.map((photo) => (
-          <li key={photo.id}>
-            <img src={photo.urls.thumb} alt={photo.id} width={photo.width / 50} height={photo.height / 50} /> {photo.width}
-          </li>
+            <img key={photo.id} src={photo.urls.thumb} alt={photo.id} width={photo.width / 50} height={photo.height / 50} className="photo"/>
         ))}
       </ul>
       </div>
