@@ -1,5 +1,6 @@
 #root {
-  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
   background-color: lightblue;
@@ -7,13 +8,21 @@
 body {
 }
 ul {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 1em 1em;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  gap: 3em;
+  padding: 3em;
+  justify-content: center;
   align-items: center;
 }
 .photo {
-  padding: 0.5em;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease; 
+}
+@media (min-width: 1024px) {
+  .photo {
+    max-width: 100%; 
+  }
 }

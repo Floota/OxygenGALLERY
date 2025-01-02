@@ -27,7 +27,12 @@ function App() {
           <img src={photoData.urls.thumb}></img>
         </li> */}
         {photoData.map((photo) => (
-            <img key={photo.id} src={photo.urls.thumb} alt={photo.id} width={photo.width / 50} height={photo.height / 50} className="photo"/>
+            <img key={photo.id} 
+              src={photo.urls.thumb} 
+              alt={photo.alt_description} 
+              width={photo.width / 50} 
+              height={photo.height / 50} 
+              className="photo"/>
         ))}
       </ul>
       </div>

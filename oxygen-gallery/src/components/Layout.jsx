@@ -4,18 +4,22 @@ export const Layout = () => {
 
     return <>
         <nav className="navbar">
-            <p>Fotobunta</p>
+            <p className="navbar__title" >Fotobunta</p>
             <div className="navbar__search-container">
-                <input type="navbar__search-container__text" className="" placeholder="Search.." />
-                <button type="submit">Search</button>
+                <input type="text" className="navbar__search-container__input" placeholder="Search.." />
+                <button type="submit" className="navbar__search-container__button">˅</button>
             </div>       
-            <button>Mis fotos</button>     
+            <button className="navbar__page__button" >Mis fotos</button>     
         </nav>
        
         <Outlet/>
 
         <footer className="footer">
-            <p>Grupo T</p>
+            <div className="footer__text">
+                <p>Created using Unsplash API</p>
+                <p>All rights go to their respective owners</p>
+                <p>MMXXIV</p>
+            </div>
         </footer>
 
     </>
