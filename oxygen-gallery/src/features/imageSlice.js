@@ -1,34 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { GetImagesThunk } from "./imagesThunk";
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchImages } from './imagesThunk.js';
 
-export const imageSlice = createSlice({
-    name: "image",
+const imageSlice = createSlice({
+    name: 'image',
     initialState: {
-        data: [],
-        status: "idle",
-        error: false
+        images: [], 
+        status: 'idle', 
+        error: null,
     },
-    reducers: {
-        "AddImage": (state, action) => {
-            state.data.push({name: action.payload})
-        }
-    },
+    reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(GetImagesThunk.pending, (state, action) => {
-                state.status = "pending"
-        })
-        .addCase(GetImagesThunk.fulfilled, (state, action) => { 
-            state.status = "fulfilled"
-            state.data = action.payload
-        })
-        .addCase(GetImagesThunk.rejected, (state, action) => { 
-            state.error = true
-            state.status = "rejected"
-        })
-    }
-})
-export const getImageData = (state) => state.image.data
-export const getImageStatus = (state) => state.image.status
-export const getImageError= (state) => state.image.error
+        builder
+            .addCase(fetchImages.pending, (state) => {
+                state.status = 'pending';
+            })
+            .addCase(fetchImages.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                state.images = action.payload; 
+            })
+            .addCase(fetchImages.rejected, (state, action) => {
+                state.status = 'rejected';
+                state.error = action.error.message;
+            });
+    },
+});
 
-export const { AddImage } = imageSlice.actions
+export const selectImages = (state) => state.image.images;
+export const selectImageStatus = (state) => state.image.status;
+export const selectImageError = (state) => state.image.error;
+
+export default imageSlice.reducer;

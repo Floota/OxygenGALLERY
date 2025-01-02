@@ -1,10 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { imageSlice } from "../features/imageSlice";
-
-
+import { configureStore } from '@reduxjs/toolkit';
+import imageReducer from '../features/imageSlice';  // Default import of the reducer
 
 export const store = configureStore({
     reducer: {
-        images: imageSlice.reducer
-    }
-})
+        image: imageReducer,  // Use the imported image reducer here
+    },
+});

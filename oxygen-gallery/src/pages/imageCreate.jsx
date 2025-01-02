@@ -1,42 +1,49 @@
-import { useDispatch, useSelector } from "react-redux"
-import { AddImage, getImageData, getImageStatus } from "./imageSlice"
-import { useEffect } from "react"
-import { GetImagesThunk } from "../features/imagesThunk"
-import { AddImage, getImageData, getImageStatus } from "../features/imageSlice"
-
-
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectImages, selectImageStatus, selectImageError } from '../features/imageSlice';
+import { fetchImages } from '../features/imagesThunk';
+import './imageCreate.css';
 
 export const ImageCreate = () => {
+    const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
-
-    const ImageList = useSelector(getImageData)
-    const ImageLoading = useSelector(getImageStatus)
-
-
-    const handleFormSend = (event) => {
-        event.preventDefault()
-        const imageName = event.target.id.value
-        dispatch(AddImage(imageName))
-    }
+    const images = useSelector(selectImages);
+    const status = useSelector(selectImageStatus);
+    const error = useSelector(selectImageError);
 
     useEffect(() => {
-        console.log(getImageStatus)
-        if (ImageLoading === "idle"){
-            dispatch(GetImagesThunk())
+        if (status === 'idle') {
+            dispatch(fetchImages());
         }
-        else if(ImageLoading === "fulfilled"){
+    }, [status, dispatch]);
 
-        }
-        else if(ImageLoading === "rejected"){
-            alert("Error en la api")
-        }
-    },[ImageLoading])
-    return <>
-        {ImageLoading === "pending" ? <p>Loading---</p>: ImageList.map((imageName,id) => <p>{imageName.name}</p>)}
-        <form style={{margin: "3em"}} onSubmit={handleFormSend}>
-            <input type="text" name="name"/>
-            <input type="submit"/>
-        </form>
-    </>
-}
+    if (status === 'pending') {
+        return <p>Loading...</p>;
+    }
+
+    if (status === 'rejected') {
+        return <p>Error: {error}</p>;
+    }
+
+    return (
+        <div className="grid">
+            {images.length === 0 ? (
+                <p>No images available</p>
+            ) : (
+                <ul>
+                    {images.map((image) => (
+                        <div key={image.id}>
+                            <img src={image.urls.thumb} 
+                            alt={image.alt_description} 
+                            width={image.width / 50} 
+                            height={image.height / 50} 
+                            className="photo"/>
+                        </div>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+};
+
+export default ImageCreate
