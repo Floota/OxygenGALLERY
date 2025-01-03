@@ -1,5 +1,5 @@
 import React from 'react';
-import './modal.css'; // Import CSS for modal styling
+import './modal.css';
 
 const Modal = ({ selectedImage, isFavorite, handleCloseModal, handleDownload, handleFavorite }) => {
     return (
@@ -20,7 +20,6 @@ const Modal = ({ selectedImage, isFavorite, handleCloseModal, handleDownload, ha
 
                 <div className="modal-buttons">
                     <div className="modal-buttons-left">
-                        {/* Download Button (Image) */}
                         <button className="modal-button" onClick={handleDownload}>
                             <img 
                                 src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-library.com%2Fimages%2Fwhite-download-icon%2Fwhite-download-icon-4.jpg&f=1&nofb=1&ipt=e82808fe2e6d5e8dd7b7cd3b2b25ab8d0767d28ea68315f64bad46157ecd4eea&ipo=images"
@@ -28,7 +27,6 @@ const Modal = ({ selectedImage, isFavorite, handleCloseModal, handleDownload, ha
                             />
                         </button>
 
-                        {/* Favorite Button (Image) */}
                         <button className="modal-favorite-button" onClick={handleFavorite}>
                             <img 
                                 src={isFavorite ? 'https://cdn4.iconfinder.com/data/icons/essentials-73/24/029_-_Star-512.png' : 

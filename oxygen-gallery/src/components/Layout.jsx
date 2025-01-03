@@ -2,25 +2,24 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 import './Layout.css';
 
 export const Layout = () => {
-    const location = useLocation(); // Get the current location (URL path)
+    const location = useLocation()
 
-    // Conditionally set the button text and link based on the current path
     const renderPageButton = () => {
         if (location.pathname === "/misfotos") {
             return (
                 <Link to="">
                 <button className="navbar__page__button">Buscador</button>
                 </Link>
-                         );
+                         )
         } else {
             return (
 
                 <Link to="/misfotos">
                 <button className="navbar__page__button">Mis Fotos</button>
                 </Link>   
-            );
+            )
         }
-    };
+    }
 
     return (
         <>
@@ -52,5 +51,5 @@ export const Layout = () => {
                 </div>
             </footer>
         </>
-    );
+    )
 }
