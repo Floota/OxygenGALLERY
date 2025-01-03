@@ -96,11 +96,18 @@
     .navbar {
         align-items: center;
         top: 0;
+        display: flex;
+        flex-direction: column;
     }
     .navbar__search-container {
         margin: 0;
         width: 55%;
-        display: flex;
-        flex-direction: column;
+        margin: 0.5em 0;
+    }
+    .navbar__title {
+        margin: 0.5em 0;
+    }
+    .navbar__page__button {
+        margin: 0.5em 0 1em 0;
     }
 }
