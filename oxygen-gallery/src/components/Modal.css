@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 .modal-overlay {
     position: fixed;
@@ -48,6 +50,7 @@
 .modal-image {
     width: 45%;
     height: auto;
+    max-height: 500px;
     border-radius: 8px;
     margin-bottom: 20px;
 }
@@ -56,11 +59,13 @@
 }
 
 .modal-info h2 {
+    font-family: 'Arial';
     font-size: 18px;
     margin-bottom: 10px;
 }
 
 .modal-info p {
+    font-family: 'Inter';
     font-size: 14px;
 }
 

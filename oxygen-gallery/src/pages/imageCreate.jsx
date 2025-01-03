@@ -3,22 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectImages, selectImageStatus, selectImageError } from '../features/imageSlice';
 import { fetchImages } from '../features/imagesThunk';
 import './imageCreate.css';
-import Modal from '../components/Modal'; 
+import Modal from '../components/Modal';
 
 export const ImageCreate = () => {
     const dispatch = useDispatch();
 
-    const images = useSelector(selectImages);
-    const status = useSelector(selectImageStatus);
-    const error = useSelector(selectImageError);
+    const images = useSelector(selectImages)
+    const status = useSelector(selectImageStatus)
+    const error = useSelector(selectImageError)
 
-    const [selectedImage, setSelectedImage] = useState(null);  // Store the clicked image
-    const [isModalOpen, setIsModalOpen] = useState(false);  // Manage modal state
-    const [isFavorite, setIsFavorite] = useState(false);  // Manage favorite state
+    const [selectedImage, setSelectedImage] = useState(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isFavorite, setIsFavorite] = useState(false)
 
     useEffect(() => {
         if (status === 'idle') {
-            dispatch(fetchImages());
+            dispatch(fetchImages())
         }
     }, [status, dispatch]);
 
@@ -34,22 +34,22 @@ export const ImageCreate = () => {
 
     const handleDownload = () => {
         const downloadUrl = selectedImage.urls.raw;
-        const a = document.createElement('a');
-        a.href = downloadUrl;
-        a.download = selectedImage.id + ".jpg"; // Suggests a .jpg file format for download
-        a.click();
-    };
+        const a = document.createElement('a')
+        a.href = downloadUrl
+        a.download = selectedImage.id + ".jpg"
+        a.click()
+    }
 
     const handleFavorite = () => {
-        setIsFavorite((prev) => !prev);  // Toggle favorite state
-    };
+        setIsFavorite((prev) => !prev)
+    }
 
     if (status === 'pending') {
-        return <p>Loading...</p>;
+        return <p>Loading...</p>
     }
 
     if (status === 'rejected') {
-        return <p>Error: {error}</p>;
+        return <p>Error: {error}</p>
     }
 
     return (
@@ -71,8 +71,6 @@ export const ImageCreate = () => {
                     </ul>
                 )}
             </div>
-
-            {/* Render the Modal when isModalOpen is true */}
             {isModalOpen && selectedImage && (
                 <Modal 
                     selectedImage={selectedImage} 
@@ -83,7 +81,7 @@ export const ImageCreate = () => {
                 />
             )}
         </div>
-    );
-};
+    )
+}
 
 export default ImageCreate;

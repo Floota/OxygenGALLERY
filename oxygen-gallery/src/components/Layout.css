@@ -70,6 +70,7 @@
 }
 .footer {
     display: flex;
+    justify-content: space-between;
     bottom: 0;
     margin: 0;
     margin-top: auto;
@@ -77,13 +78,22 @@
     background: radial-gradient(circle, rgba(0,63,107,1) 43%, rgba(0,122,209,1) 100%);
 }
 .footer__text {
+    margin-left: 2em;
     line-height: 0.5em;
 }
-
+.footer__creator {
+    margin: 0 1em 0 0;
+    text-align: right;
+}
+.footer__creator p {
+    margin: 1em 0 0.5em 0;
+}
+.footer__logos {
+    width: 30px;
+    height: 30px;
+}
 @media (max-width: 1024px) {
     .navbar {
-        display: flex;
-        flex-direction: column;
         align-items: center;
         top: 0;
     }
